@@ -14,7 +14,6 @@ odoo.define('sort_product.models', function (require) {
             loaded: function(self, products){
                 products.sort(function (a,b) {
                     return b.qty - a.qty;
-//                        return (a.qty > b.qty) ? -1 : ((b.qty > a.qty) ? 1 : 0);
                 });
                 console.log(products);
                 self.db.add_products(products);
