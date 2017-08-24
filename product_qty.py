@@ -5,14 +5,14 @@ import functools
 import xmlrpclib
 
 # Call api
-payload = {'day': 'sunday', 'hour': '9'}
+payload = {'day': 'sunday', 'hour': '12'}
 res = requests.get('http://localhost:8000/recommended_system/product', params=payload)
 product_list = res.json()
 
 # Configuration
 HOST = 'localhost'
 PORT = 8069
-DB = 'kidzplay_test'
+DB = 'kidzplay_sort_product'
 USER = 'michael@magestore.com'
 PASS = 'michael123@'
 ROOT = 'http://%s:%d/xmlrpc/' % (HOST,PORT)
