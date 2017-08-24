@@ -15,7 +15,7 @@ odoo.define('sort_product.models', function (require) {
                 products.sort(function (a,b) {
                     return b.qty - a.qty;
                 });
-//                console.log(products);
+                console.log(products);
                 self.db.add_products(products);
             },
     });
