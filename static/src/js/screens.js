@@ -29,9 +29,9 @@ odoo.define('sort_product.screens', function (require) {
 //            console.log(this.product_list.length);
 //            console.log(this.product_list[0]);
 //            console.log(this.product_list[0].qty);
-            for (var i = 0; i < this.product_list.length; i++){
-                console.log(this.product_list[i]);
-            }
+//            for (var i = 0; i < this.product_list.length; i++){
+//                console.log(this.product_list[i]);
+//            }
         },
     });
 });
