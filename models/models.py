@@ -22,11 +22,11 @@ class Product(models.Model):
         payload = {'day': current_dow, 'hour': current_hour}
         res = requests.get('http://localhost:8000/recommended_system/product', params=payload)
         product_list = res.json()
-        print('-------------------------------------')
-        print(datetime.now())
-        print(payload)
+        print '-------------------------------------'
+        print datetime.now()
+        print payload
         pprint(product_list)
-        print('-------------------------------------')
+        print '-------------------------------------'
 
         # Configuration
         HOST = 'localhost'
