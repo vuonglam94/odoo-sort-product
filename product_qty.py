@@ -5,7 +5,7 @@ from datetime import datetime
 from pprint import pprint
 
 # Get current day of week and hour
-dow_list = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+dow_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday','sunday']
 current_dow = dow_list[datetime.today().weekday()]
 current_hour = str(datetime.now().hour)
 
@@ -22,7 +22,7 @@ print('-------------------------------------')
 # Configuration
 HOST = 'localhost'
 PORT = 8069
-DB = 'kidzplay_sort_product'
+DB = 'kidzplay_sort'
 USER = 'michael@magestore.com'
 PASS = 'michael123@'
 ROOT = 'http://%s:%d/xmlrpc/' % (HOST, PORT)
@@ -41,4 +41,4 @@ for p in product_list:
     # pdb.set_trace()
     p_id = int(p['id'])
     p_qty = float(p['qty'])
-    p_updated = call('product.template', 'write', [p_id], {'qty': p_qty})
+    call('product.template', 'write', [p_id], {'qty': p_qty})
