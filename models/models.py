@@ -5,6 +5,7 @@ import requests
 import functools
 import xmlrpclib
 from datetime import datetime
+from pytz import timezone
 from pprint import pprint
 
 class Product(models.Model):
@@ -13,21 +14,6 @@ class Product(models.Model):
     qty = fields.Float(string='qty', default=0.0)
 
     def _cron_update_qty(self):
-        # Get current day of week and hour
-        dow_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-        current_dow = dow_list[datetime.today().weekday()]
-        current_hour = str(datetime.now().hour)
-
-        # Call api
-        payload = {'day': current_dow, 'hour': current_hour}
-        res = requests.get('http://localhost:8000/recommended_system/product', params=payload)
-        product_list = res.json()
-        print '-------------------------------------'
-        print datetime.now()
-        print payload
-        pprint(product_list)
-        print '-------------------------------------'
-
         # Configuration
         HOST = 'localhost'
         PORT = 8069
@@ -35,6 +21,22 @@ class Product(models.Model):
         USER = 'michael@magestore.com'
         PASS = 'michael123@'
         ROOT = 'http://%s:%d/xmlrpc/' % (HOST, PORT)
+        TIMEZONE = 'Asia/Ho_Chi_Minh'
+
+        # Get current day of week and hour
+        dow_list = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        current_datetime = datetime.now(timezone('UTC')).astimezone(timezone(TIMEZONE))
+        current_dow = dow_list[current_datetime.weekday()]
+        current_hour = str(current_datetime.hour)
+
+        # Call api
+        payload = {'day': current_dow, 'hour': current_hour}
+        res = requests.get('http://localhost:8000/recommended_system/product', params=payload)
+        product_list = res.json()
+        print '-------------------------------------'
+        print payload
+        pprint(product_list)
+        print '-------------------------------------'
 
         # Login
         uid = xmlrpclib.ServerProxy(ROOT + 'common').login(DB, USER, PASS)
