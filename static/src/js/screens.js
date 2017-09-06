@@ -25,13 +25,6 @@ odoo.define('sort_product.screens', function (require) {
                 product_node.addEventListener('click',this.click_product_handler);
                 list_container.appendChild(product_node);
             }
-//            console.log(this.product_list);
-//            console.log(this.product_list.length);
-//            console.log(this.product_list[0]);
-//            console.log(this.product_list[0].qty);
-//            for (var i = 0; i < this.product_list.length; i++){
-//                console.log(this.product_list[i]);
-//            }
         },
     });
 });
