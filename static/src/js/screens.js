@@ -4,8 +4,18 @@ odoo.define('sort_product.screens', function (require) {
     var core = require('web.core');
     var QWeb = core.qweb;
     var screens = require('point_of_sale.screens');
+    var ws = new WebSocket("ws://localhost:7000/");
 
     screens.ProductListWidget.include({
+        init: function(parent, options) {
+            this._super(parent,options);
+            ws.onmessage = function (event) {
+                if (event.data === "Done") {
+                    alert("Press F5 to update new recommended product list!");
+                }
+            }
+        },
+
         renderElement: function() {
             var el_str  = QWeb.render(this.template, {widget: this});
             var el_node = document.createElement('div');
@@ -24,6 +34,9 @@ odoo.define('sort_product.screens', function (require) {
                 var product_node = this.render_product(this.product_list[i]);
                 product_node.addEventListener('click',this.click_product_handler);
                 list_container.appendChild(product_node);
+            }
+            for (var i = 0; i < this.product_list.length; i++){
+                console.log(this.product_list[i]);
             }
         },
     });
