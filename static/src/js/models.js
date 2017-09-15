@@ -12,6 +12,7 @@ odoo.define('sort_product.models', function (require) {
             domain: [['sale_ok','=',true],['available_in_pos','=',true]],
             context: function(self){ return { pricelist: self.pricelist.id, display_default_code: false }; },
             loaded: function(self, products){
+                console.log(products);
                 self.db.add_products(products);
             },
     });
