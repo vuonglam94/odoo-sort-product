@@ -3,7 +3,6 @@
 	<!-- Adds all assets in Odoo -->
     <template id="assets" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
-            <!-- <script type="text/javascript" src="/sort_product/static/src/js/models.js"></script> -->
             <script type="text/javascript" src="/sort_product/static/src/js/screens.js"></script>
             <script type="text/javascript" src="/sort_product/static/src/js/db.js"></script>
         </xpath>
