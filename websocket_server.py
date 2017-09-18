@@ -38,7 +38,7 @@ async def update_qty(websocket, path):
                 pass
         except requests.exceptions.RequestException as e:
             print(e)       
-        await asyncio.sleep(60)
+        await asyncio.sleep(3600)
 
 start_server = websockets.serve(update_qty, 'localhost', 7000)
 asyncio.get_event_loop().run_until_complete(start_server)
